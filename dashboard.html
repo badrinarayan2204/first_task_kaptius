@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo1" ><img src="logo.png" alt="KAPTIUS Logo"></div>
+        <div class="logo" ><img src="logo.png" alt="KAPTIUS Logo"></div>
+
+        <div>
+            <a href="cart.html" class="cart-icon">
+                <span>🛒</span> </a>
+             <p id="demo"></p>
+         </div>
+        <div class="nav-items">
+            
+            <a class="user-icon" onclick="showLogoutPopup()">
+                <span>👤</span>
+            </a>
+            <a href="index.html" class="logout"><h2>Logout</h2></a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Welcome to Your Dashboard</h1>
+        <div class="product-catalog">
+         
+            <div class="product-card">
+                <!--<img src="milk-bread.jpg" alt="Milk Bread">-->
+                <h2>Milk Bread</h2>
+                <p>Good for health</p>
+                <p>Price : 100 </p>
+                <button onclick="addToCart('Milk Bread', 100)">Add to Cart</button>
+                
+            </div>
+            
+            <div class="product-card">
+                <!--<img src="tea.jpg" alt="Tea">-->
+                <h2>Tea</h2>
+                <p>Fresh Assam Tea</p>
+                <p>Price : 50 </p>
+                <button onclick="addToCart('Tea', 50)">Add to Cart</button>
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="checkout-section">
+        <h2>Your Cart</h2>
+        <!-- You can add more details about the cart here -->
+        <div id="cart-details">
+            <!-- Cart details will be inserted here -->
+        </div>
+        <form action="payment.html" method="post">
+            <input type="hidden" id="total-amount" name="total-amount">
+            <button type="submit" class="checkout-button">Checkout</button>
+        </form>
+    </div>
+  
+    <script>
+        // Initialize an empty cart
+        let cart = {};
+
+        // Function to handle adding items to the cart
+        function addToCart(productName, productPrice) {
+            // Check if the product is already in the cart
+            if (cart[productName]) {
+                // Increment the quantity
+                cart[productName].quantity++;
+            } else {
+                // Add the product to the cart with a quantity of 1
+                cart[productName] = { quantity: 1, price: productPrice };
+            }
+
+            // Display the updated cart
+            displayCart();
+        }
+
+        // Function to display the cart contents
+       // Function to display the cart contents
+function displayCart() {
+    if (Object.keys(cart).length === 0) {
+        // If the cart is empty, display "Cart is empty"
+        document.getElementById('cart-details').innerHTML = 'Cart is empty';
+    } else {
+        let cartContents = '';
+        let totalAmount = 0;
+        for (let item in cart) {
+            let itemTotal = cart[item].quantity * cart[item].price;
+            totalAmount += itemTotal;
+            cartContents += `<p>${item}: Quantity - ${cart[item].quantity}, Unit Price - ${cart[item].price}, Total - ${itemTotal}</p>`;
+        }
+        cartContents += `<p>Total Amount: ${totalAmount}</p>`;
+        document.getElementById('cart-details').innerHTML = cartContents;
+
+        // Store the total amount in the local storage
+        localStorage.setItem('totalAmount', totalAmount);
+    }
+}   
+        document.querySelector('.checkout-button').addEventListener('click', function(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
+            if (Object.keys(cart).length === 0) {
+        // If the cart is empty, display "Cart is empty"
+        document.getElementById('cart-details').innerHTML = 'Cart is empty';
+    } else {
+        // Redirect to the payment page
+        window.location.href = 'payment.html';
+    }
+
+        });
+    </script>
+</body>
+</html>

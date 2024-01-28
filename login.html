@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="stylelogin.css">
+</head>
+<body>
+    <h1>Kaptius</h1>
+    <div class="form-container">
+        <div class="form">
+            <h2>Login</h2>
+            <form id="loginForm" action="dashboard.html">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Log In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var loginForm = document.querySelector('#loginForm');
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // prevent the form from submitting
+    
+                // get the values of the input fields
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+    
+                // retrieve user data from localStorage
+                var users = JSON.parse(localStorage.getItem('users')) || [];
+    
+                // find the user with the entered email
+                var user = users.find(function(user) { return user.email === email; });
+    
+                // check the entered password against the user's password
+                if (user && user.password === password) {
+                    // Redirect to dashboard page
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert('Invalid email or password.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

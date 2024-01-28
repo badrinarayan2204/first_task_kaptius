@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="stylebody.css">
+</head>
+<body>
+    <div class="home-container">
+        <h1>Welcome to Kaptius</h1>
+        <button id="signUpButton">Sign Up</button>
+        <button id="logInButton">Log In</button>
+    </div>
+
+
+    <script>
+        document.getElementById('signUpButton').addEventListener('click', function() {
+            window.location.href = 'signup.html';
+        });
+
+        document.getElementById('logInButton').addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

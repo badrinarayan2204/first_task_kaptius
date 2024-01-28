@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo1" ><img src="logo.png" alt="KAPTIUS Logo"></div>
+        <div class="logo" ><img src="logo.png" alt="KAPTIUS Logo"></div>
+
+        <div>
+            <a href="cart.html" class="cart-icon">
+                <span>🛒</span> </a>
+             <p id="demo"></p>
+         </div>
+        <div class="nav-items">
+            
+            <a class="user-icon" onclick="showLogoutPopup()">
+                <span>👤</span>
+            </a>
+            <a href="index.html" class="logout"><h2>Logout</h2></a>
+        </div>
+    </nav>
+    <div class="container">
+      <div class="payment-section">
+          <h2>Payment Details</h2>
+          <!-- You can add more details about the payment here -->
+          <div id="total-amount">
+             <h2> Total Amount: $  <span id="amount"></span> </h2>
+             
+          </div>
+
+          <img src="payment.jpeg" alt="Payment"> </img>
+<br>
+<br>
+          <button> <a href="success.html" > <h3>Confirm payment </h3></a> </button> 
+      </div>
+      <script>
+        window.onload = function() {
+            // Retrieve the total amount from the local storage
+            var totalAmount = localStorage.getItem('totalAmount');
+    
+            // Update the total amount
+            document.getElementById('amount').textContent = totalAmount;
+        };
+    </script>
+</body>
+</html>
